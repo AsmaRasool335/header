@@ -1,0 +1,375 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Design Showcase</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --ink: #1c1830;
+        --ink-soft: #5b5578;
+        --canvas: #f7f6fc;
+        --panel: #ffffff;
+        --accent: #4b3fc9;
+        --accent-deep: #241c66;
+        --accent-wash: #ebe8fb;
+        --signature: #f2a72e;
+        --line: #ddd8f2;
+        --radius-lg: 24px;
+        --radius-sm: 12px;
+        --shadow-card: 0 20px 40px -18px rgba(36, 28, 102, 0.28);
+        --shadow-card-hover: 0 28px 56px -18px rgba(36, 28, 102, 0.38);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        background:
+          radial-gradient(
+              circle at 1px 1px,
+              rgba(75, 63, 201, 0.09) 1px,
+              transparent 0
+            )
+            0 0 / 26px 26px,
+          var(--canvas);
+        color: var(--ink);
+        font-family: "Inter", sans-serif;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      .page {
+        max-width: 1180px;
+        margin: 0 auto;
+        padding: 72px 32px 96px;
+      }
+
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 12px;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--accent);
+        background: var(--accent-wash);
+        padding: 6px 14px;
+        border-radius: 999px;
+        font-weight: 500;
+      }
+
+      .eyebrow::before {
+        content: "";
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--signature);
+        display: inline-block;
+      }
+
+      h1 {
+        font-family: "Space Grotesk", sans-serif;
+        font-size: clamp(32px, 5vw, 48px);
+        font-weight: 700;
+        line-height: 1.08;
+        margin: 20px 0 12px;
+        letter-spacing: -0.01em;
+      }
+
+      .subtitle {
+        color: var(--ink-soft);
+        font-size: 16px;
+        max-width: 560px;
+        line-height: 1.6;
+        margin: 0;
+      }
+
+      section {
+        margin-top: 64px;
+      }
+
+      .section-head {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 16px;
+        margin-bottom: 28px;
+        padding-bottom: 14px;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .section-head h2 {
+        font-family: "Space Grotesk", sans-serif;
+        font-size: 22px;
+        font-weight: 600;
+        margin: 0;
+      }
+
+      .section-head span {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 12px;
+        color: var(--ink-soft);
+        letter-spacing: 0.04em;
+      }
+
+      .grid-desktop {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 28px;
+      }
+
+      .grid-handheld {
+        display: grid;
+        grid-template-columns: 1.4fr 1fr;
+        gap: 28px;
+        align-items: start;
+      }
+
+      .card {
+        background: var(--panel);
+        border-radius: var(--radius-lg);
+        border: 1px solid var(--line);
+        box-shadow: var(--shadow-card);
+        overflow: hidden;
+        transition:
+          transform 0.35s ease,
+          box-shadow 0.35s ease;
+      }
+
+      .card:hover {
+        transform: translateY(-6px);
+        box-shadow: var(--shadow-card-hover);
+      }
+
+      .card-label {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 14px 20px;
+        background: var(--accent-wash);
+        border-bottom: 1px solid var(--line);
+      }
+
+      .card-label h3 {
+        font-family: "Space Grotesk", sans-serif;
+        font-size: 15px;
+        font-weight: 600;
+        color: var(--accent-deep);
+        margin: 0;
+      }
+
+      .tag {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 11px;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: #8a5a00;
+        background: rgba(242, 167, 46, 0.22);
+        padding: 3px 9px;
+        border-radius: 999px;
+      }
+
+      .frame {
+        padding: 22px;
+        background: linear-gradient(180deg, #efedfb 0%, #f7f6fc 100%);
+        display: flex;
+        justify-content: center;
+      }
+
+      .browser-chrome {
+        width: 100%;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 10px 24px -12px rgba(36, 28, 102, 0.35);
+        background: #16132b;
+      }
+
+      .browser-bar {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        padding: 9px 12px;
+        background: #16132b;
+      }
+
+      .browser-bar i {
+        width: 9px;
+        height: 9px;
+        border-radius: 50%;
+        display: inline-block;
+        background: #4b3fc9;
+        opacity: 0.6;
+      }
+
+      .browser-bar i:nth-child(1) {
+        background: #ff6159;
+        opacity: 0.85;
+      }
+      .browser-bar i:nth-child(2) {
+        background: #ffbd2e;
+        opacity: 0.85;
+      }
+      .browser-bar i:nth-child(3) {
+        background: #28c940;
+        opacity: 0.85;
+      }
+
+      .browser-chrome img {
+        display: block;
+        width: 100%;
+        height: auto;
+        background: var(--accent-wash);
+      }
+
+      .tablet-chrome {
+        border: 10px solid #16132b;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 10px 24px -12px rgba(36, 28, 102, 0.35);
+        max-width: 420px;
+        margin: 0 auto;
+      }
+
+      .tablet-chrome img {
+        display: block;
+        width: 100%;
+        height: auto;
+        background: var(--accent-wash);
+      }
+
+      .mobile-chrome {
+        border: 10px solid #16132b;
+        border-radius: 34px;
+        overflow: hidden;
+        box-shadow: 0 10px 24px -12px rgba(36, 28, 102, 0.35);
+        max-width: 240px;
+        margin: 0 auto;
+        position: relative;
+      }
+
+      .mobile-chrome::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 70px;
+        height: 16px;
+        background: #16132b;
+        border-radius: 0 0 12px 12px;
+        z-index: 2;
+      }
+
+      .mobile-chrome img {
+        display: block;
+        width: 100%;
+        height: auto;
+        background: var(--accent-wash);
+      }
+
+      @media (max-width: 860px) {
+        .grid-desktop,
+        .grid-handheld {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .card {
+          transition: none;
+        }
+      }
+
+      a:focus-visible,
+      button:focus-visible {
+        outline: 2px solid var(--accent);
+        outline-offset: 3px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <header>
+        <span class="eyebrow">UI Gallery</span>
+        <h1>Design Showcase</h1>
+        <p class="subtitle">
+          A quick look at how the interface adapts across modes and screen sizes
+          — desktop, tablet, and mobile, side by side.
+        </p>
+      </header>
+
+      <section>
+        <div class="section-head">
+          <h2>Desktop</h2>
+          <span>1440 × 900</span>
+        </div>
+        <div class="grid-desktop">
+          <div class="card">
+            <div class="card-label">
+              <h3>Dark Mode</h3>
+              <span class="tag">Default</span>
+            </div>
+            <div class="frame">
+              <div class="browser-chrome">
+                <div class="browser-bar"><i></i><i></i><i></i></div>
+                <img src="one.png" alt="Desktop dark mode preview" />
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-label">
+              <h3>Light Mode</h3>
+              <span class="tag">Alt</span>
+            </div>
+            <div class="frame">
+              <div class="browser-chrome">
+                <div class="browser-bar"><i></i><i></i><i></i></div>
+                <img src="two.png" alt="Desktop light mode preview" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="section-head">
+          <h2>Handheld</h2>
+          <span>Tablet & Mobile</span>
+        </div>
+        <div class="grid-handheld">
+          <div class="card">
+            <div class="card-label">
+              <h3>Tablet Screen</h3>
+              <span class="tag">Portrait</span>
+            </div>
+            <div class="frame">
+              <div class="tablet-chrome">
+                <img src="three.png" alt="Tablet screen preview" />
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-label">
+              <h3>Mobile Screen</h3>
+              <span class="tag">Portrait</span>
+            </div>
+            <div class="frame">
+              <div class="mobile-chrome">
+                <img src="four.jpeg" alt="Mobile screen preview" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </body>
+</html>
