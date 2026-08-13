@@ -111,16 +111,12 @@ function updateCarousel() {
     }
   });
 
-  /* Update dots */
 
   dots.forEach((dot, index) => {
     dot.classList.toggle("active", index === currentIndex);
   });
 }
 
-/* ================================
-   NEXT
-================================ */
 
 function nextSlide() {
   currentIndex++;
@@ -132,9 +128,6 @@ function nextSlide() {
   updateCarousel();
 }
 
-/* ================================
-   PREVIOUS
-================================ */
 
 function previousSlide() {
   currentIndex--;
@@ -146,17 +139,9 @@ function previousSlide() {
   updateCarousel();
 }
 
-/* ================================
-   BUTTONS
-================================ */
-
 nextButton.addEventListener("click", nextSlide);
 
 prevButton.addEventListener("click", previousSlide);
-
-/* ================================
-   DOT CLICK
-================================ */
 
 dots.forEach((dot, index) => {
   dot.addEventListener("click", () => {
@@ -166,9 +151,6 @@ dots.forEach((dot, index) => {
   });
 });
 
-/* ================================
-   CLICK PHONE
-================================ */
 
 cards.forEach((card, index) => {
   card.addEventListener("click", () => {
@@ -177,10 +159,6 @@ cards.forEach((card, index) => {
     updateCarousel();
   });
 });
-
-/* ================================
-   KEYBOARD
-================================ */
 
 document.addEventListener("keydown", (e) => {
   if (e.key === "ArrowRight") {
@@ -224,39 +202,3 @@ function handleSwipe() {
     previousSlide();
   }
 }
-
-/* ================================
-   INITIALIZE
-================================ */
-
-updateCarousel();
-const expandAllBtn = document.getElementById("expandAll");
-const faqItems = document.querySelectorAll(".faq-question");
-
-let allExpanded = false;
-
-expandAllBtn.addEventListener("click", function () {
-  allExpanded = !allExpanded;
-
-  faqItems.forEach(function (button) {
-    const target = document.querySelector(
-      button.getAttribute("data-bs-target"),
-    );
-
-    const collapse = bootstrap.Collapse.getOrCreateInstance(target, {
-      toggle: false,
-    });
-
-    if (allExpanded) {
-      collapse.show();
-    } else {
-      collapse.hide();
-    }
-  });
-
-  if (allExpanded) {
-    expandAllBtn.innerHTML = "<span>−</span> Collapse all";
-  } else {
-    expandAllBtn.innerHTML = "<span>+</span> Expand all";
-  }
-});

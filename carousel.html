@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
+      rel="stylesbheet"
+    />
+    <script
+      src="https://kit.fontawesome.com/712a58c174.js"
+      crossorigin="anonymous"
+    ></script>
+    <style>
+      body {
+        background-color: rgb(138, 140, 142);
+      }
+      .card-item {
+        background: #fff;
+        max-width: 290px;
+        padding: 10px;
+        border-radius: 20px;
+      }
+      .card-item img {
+        border-radius: 20px;
+      }
+
+    </style>
+    <title>Carousel</title>
+  </head>
+  <body>
+    <div class="card-wrapper">
+      <div class="card-item active">
+        <img
+          src="./img/tm-622-screen-01.jpg"
+          width="290px"
+          height="400px"
+          alt=""
+        />
+      </div>
+      <div class="card-item">
+        <img
+          src="./img/tm-622-screen-02.jpg"
+          width="290px"
+          height="400px"
+          alt=""
+        />
+      </div>
+      <div class="card-item">
+        <img
+          src="./img/tm-622-screen-03.jpg"
+          width="290px"
+          height="400px"
+          alt=""
+        />
+      </div>
+      <div class="card-item">
+        <img
+          src="./img/tm-622-screen-04.jpg"
+          width="290px"
+          height="400px"
+          alt=""
+        />
+      </div>
+    </div>
+    <button onclick="goprev()">Prev</button>
+    <button onclick="gonext()">Next</button>
+    <script>
+     const slide = document.querySelectorAll(".card-item");
+
+
+
+     
+    </script>
+  </body>
+</html>

@@ -1,0 +1,816 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
+      rel="stylesheet"
+    />
+    <script
+      src="https://kit.fontawesome.com/712a58c174.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <title>Document</title>
+    <style>
+      :root {
+        --bg-image: url("assets/bg.jpeg");
+        --overlay-bottom: #3c2878c1;
+        --overlay-top: #9650b4a0;
+        --purple: #660368;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family:
+          "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+          "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+      }
+
+      html,
+      body {
+        width: 100%;
+        min-height: 100%;
+        overflow-x: hidden;
+      }
+
+      body {
+        margin: 0;
+      }
+
+      /* ================= HERO ================= */
+
+      .hero {
+        min-height: 100vh;
+
+        background:
+          linear-gradient(180deg, var(--overlay-top), var(--overlay-bottom)),
+          var(--bg-image) center / cover no-repeat;
+
+        background-attachment: fixed;
+      }
+
+      .banner {
+        min-height: 100vh;
+        width: 100%;
+
+        padding: 40px 50px;
+
+        display: flex;
+        flex-direction: column;
+      }
+
+      /* ================= HEADER ================= */
+
+      header {
+        width: 100%;
+
+        margin-bottom: 30px;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .nav-bar {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        gap: 25px;
+      }
+
+      .nav-bar a {
+        text-decoration: none;
+        color: white;
+
+        padding: 10px 15px;
+
+        border-radius: 35px;
+
+        font-size: 13px;
+        font-weight: 500;
+
+        transition: 0.3s;
+      }
+
+      .nav-bar a:hover {
+        background-color: var(--purple);
+      }
+
+      /* ================= MENU ICON ================= */
+
+      .menu-icon {
+        display: none;
+      }
+
+      .menu-icon i {
+        color: white;
+        font-size: 30px;
+        cursor: pointer;
+      }
+
+      /* ================= CAROUSEL ================= */
+
+      .carousel {
+        position: relative;
+
+        width: 100%;
+        max-width: 1200px;
+
+        height: 400px;
+
+        margin: auto;
+
+        overflow: hidden;
+      }
+
+      .slide {
+        color: white;
+
+        width: 100%;
+        height: 100%;
+
+        display: none;
+
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        gap: 20px;
+
+        text-align: center;
+
+        padding: 20px 100px;
+      }
+
+      .slide.active {
+        display: flex;
+      }
+
+      /* ================= TEXT ================= */
+
+      .slide h4 {
+        font-size: 20px;
+        font-weight: 500;
+
+        white-space: normal;
+      }
+
+      .slide h1 {
+        font-size: 42px;
+        line-height: 1.2;
+
+        white-space: normal;
+      }
+
+      .slide p {
+        max-width: 750px;
+
+        font-size: 15px;
+        line-height: 1.6;
+
+        white-space: normal;
+      }
+
+      /* ================= CREATE BUTTON ================= */
+
+      .create {
+        background-color: var(--purple);
+
+        color: white;
+
+        border: none;
+
+        border-radius: 30px;
+
+        padding: 16px 25px;
+
+        width: fit-content;
+
+        align-self: center;
+
+        cursor: pointer;
+
+        transition: 0.3s;
+      }
+
+      .create:hover {
+        background-color: transparent;
+
+        border: 1px solid white;
+      }
+
+      /* ================= ARROWS ================= */
+
+      .prev,
+      .next {
+        position: absolute;
+
+        top: 50%;
+
+        transform: translateY(-50%);
+
+        border: none;
+
+        background: var(--purple);
+
+        color: white;
+
+        width: 45px;
+        height: 45px;
+
+        border-radius: 50%;
+
+        cursor: pointer;
+
+        font-size: 20px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        transition: 0.3s;
+
+        z-index: 5;
+      }
+
+      .prev {
+        left: 10px;
+      }
+
+      .next {
+        right: 10px;
+      }
+
+      .prev:hover,
+      .next:hover {
+        background: transparent;
+        border: 1px solid white;
+      }
+
+      /* ================= DOTS ================= */
+
+      .dots {
+        position: absolute;
+
+        display: flex;
+
+        gap: 8px;
+
+        bottom: 15px;
+
+        left: 50%;
+
+        transform: translateX(-50%);
+
+        z-index: 10;
+      }
+
+      .dot {
+        width: 10px;
+        height: 10px;
+
+        border-radius: 50%;
+
+        opacity: 0.5;
+
+        background: white;
+
+        cursor: pointer;
+
+        transition: 0.3s;
+      }
+
+      .dot.active {
+        background: var(--purple);
+
+        opacity: 1;
+
+        transform: scale(1.2);
+      }
+
+      /* ================================================= */
+      /*                  LARGE DESKTOP                    */
+      /* ================================================= */
+
+      @media (min-width: 1200px) {
+        .banner {
+          padding: 50px 70px;
+        }
+
+        .nav-bar {
+          gap: 35px;
+        }
+
+        .carousel {
+          height: 450px;
+        }
+
+        .slide h1 {
+          font-size: 46px;
+        }
+
+        .slide p {
+          font-size: 16px;
+        }
+      }
+
+      /* ================================================= */
+      /*                     LAPTOP                        */
+      /* ================================================= */
+
+      @media (max-width: 1199px) {
+        .banner {
+          padding: 40px;
+        }
+
+        .nav-bar {
+          gap: 15px;
+        }
+
+        .nav-bar a {
+          font-size: 12px;
+          padding: 9px 12px;
+        }
+
+        .carousel {
+          height: 400px;
+        }
+
+        .slide {
+          padding: 20px 80px;
+        }
+
+        .slide h1 {
+          font-size: 40px;
+        }
+
+        .slide p {
+          font-size: 14px;
+        }
+      }
+
+      /* ================================================= */
+      /*                     TABLET                        */
+      /* ================================================= */
+
+      @media (max-width: 900px) {
+        .banner {
+          padding: 30px;
+        }
+
+        header {
+          margin-bottom: 15px;
+        }
+
+        .nav-bar {
+          gap: 8px;
+        }
+
+        .nav-bar a {
+          font-size: 11px;
+          padding: 8px 10px;
+        }
+
+        .carousel {
+          height: 380px;
+        }
+
+        .slide {
+          padding: 20px 70px;
+          gap: 15px;
+        }
+
+        .slide h4 {
+          font-size: 17px;
+        }
+
+        .slide h1 {
+          font-size: 34px;
+        }
+
+        .slide p {
+          font-size: 13px;
+          max-width: 600px;
+        }
+
+        .prev,
+        .next {
+          width: 40px;
+          height: 40px;
+          font-size: 17px;
+        }
+      }
+
+      /* ================================================= */
+      /*                 SMALL TABLET / MOBILE             */
+      /* ================================================= */
+
+      @media (max-width: 786px) {
+        .hero {
+          min-height: 100vh;
+          background-attachment: scroll;
+        }
+
+        .banner {
+          min-height: 100vh;
+
+          padding: 0 20px 30px;
+        }
+
+        /* HEADER */
+
+        header {
+          position: relative;
+
+          width: 100%;
+
+          margin-bottom: 0;
+
+          padding-top: 15px;
+
+          display: flex;
+          flex-direction: column;
+
+          align-items: center;
+        }
+
+        /* HAMBURGER */
+
+        .menu-icon {
+          display: block;
+
+          width: 100%;
+
+          text-align: right;
+
+          padding-right: 5px;
+
+          z-index: 20;
+        }
+
+        /* NAVIGATION */
+
+        .nav-bar {
+          display: none;
+
+          width: 100%;
+
+          flex-direction: column;
+
+          gap: 5px;
+
+          padding: 10px;
+
+          margin-top: 5px;
+
+          background: rgba(60, 40, 120, 0.8);
+
+          border-radius: 15px;
+        }
+
+        .nav-bar.active {
+          display: flex;
+        }
+
+        .nav-bar a {
+          width: 100%;
+
+          text-align: center;
+
+          background-color: var(--purple);
+
+          font-size: 12px;
+
+          padding: 10px;
+        }
+
+        .nav-bar a:hover {
+          background-color: #782878;
+        }
+
+        /* CAROUSEL */
+
+        .carousel {
+          height: 430px;
+
+          margin-top: 10px;
+        }
+
+        .slide {
+          padding: 20px 55px;
+
+          gap: 15px;
+        }
+
+        .slide h4 {
+          font-size: 15px;
+        }
+
+        .slide h1 {
+          font-size: 28px;
+
+          line-height: 1.25;
+        }
+
+        .slide p {
+          font-size: 12px;
+
+          line-height: 1.6;
+
+          max-width: 500px;
+        }
+
+        /* ARROWS */
+
+        .prev {
+          left: 0;
+        }
+
+        .next {
+          right: 0;
+        }
+
+        .prev,
+        .next {
+          width: 38px;
+          height: 38px;
+
+          font-size: 15px;
+        }
+
+        /* DOTS */
+
+        .dots {
+          bottom: 10px;
+        }
+
+        /* BUTTON */
+
+        .create {
+          padding: 13px 20px;
+
+          font-size: 13px;
+        }
+      }
+
+      /* ================================================= */
+      /*                    MOBILE                         */
+      /* ================================================= */
+
+      @media (max-width: 576px) {
+        .banner {
+          padding: 0 15px 20px;
+        }
+
+        header {
+          padding-top: 10px;
+        }
+
+        .menu-icon i {
+          font-size: 28px;
+        }
+
+        .carousel {
+          height: 430px;
+        }
+
+        .slide {
+          padding: 20px 45px;
+
+          gap: 12px;
+        }
+
+        .slide h4 {
+          font-size: 14px;
+        }
+
+        .slide h1 {
+          font-size: 24px;
+
+          line-height: 1.3;
+        }
+
+        .slide p {
+          font-size: 11px;
+
+          line-height: 1.6;
+
+          max-width: 320px;
+        }
+
+        .slide p br {
+          display: none;
+        }
+
+        .prev,
+        .next {
+          width: 34px;
+          height: 34px;
+
+          font-size: 13px;
+        }
+
+        .create {
+          padding: 12px 18px;
+
+          font-size: 12px;
+        }
+
+        .dot {
+          width: 8px;
+          height: 8px;
+        }
+      }
+
+      /* ================================================= */
+      /*                 VERY SMALL PHONES                 */
+      /* ================================================= */
+
+      @media (max-width: 380px) {
+        .banner {
+          padding-left: 10px;
+          padding-right: 10px;
+        }
+
+        .carousel {
+          height: 450px;
+        }
+
+        .slide {
+          padding: 15px 38px;
+        }
+
+        .slide h4 {
+          font-size: 13px;
+        }
+
+        .slide h1 {
+          font-size: 21px;
+        }
+
+        .slide p {
+          font-size: 10px;
+        }
+
+        .prev,
+        .next {
+          width: 30px;
+          height: 30px;
+        }
+
+        .create {
+          padding: 10px 16px;
+          font-size: 11px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="hero">
+      <div class="banner">
+        <header>
+          <div class="menu-icon">
+            <i class="bi bi-filter-right"></i>
+          </div>
+          <nav class="nav-bar">
+            <a href="#">HOME</a>
+            <a href="#">FEATURE</a>
+            <a href="#">PRICING</a>
+            <a href="#"><i class="fa-solid fa-basketball"></i></a>
+            <a href="#">BLOG</a>
+          </nav>
+        </header>
+        <div class="carousel">
+          <div class="slide active">
+            <h4>Startup 3</h4>
+            <h1>Forget about Code</h1>
+            <p>
+              Startup Framework gives you complete freedom over your creative
+              <br />
+              process -- you don't have to think avout any technical aspects.
+              There <br />
+              are no limits and absolutely no coding.
+            </p>
+          </div>
+          <div class="slide">
+            <h4>Startup 2</h4>
+            <h1>Lorem, ipsum dolor</h1>
+            <p>
+              Lorem ipsum dolor sit amet consectetur, adipisicing elit. <br />
+              Temporibus repellat ab officiis blanditiis sunt ad sed ratione
+              <br />
+              amet dolore. Laboriosam corrupti maxime ad molestias ratione.
+            </p>
+          </div>
+          <div class="slide">
+            <h4>Startup 1</h4>
+            <h1>Sit amet consectetur</h1>
+            <p>
+              Lorem ipsum dolor sit amet consectetur. <br />
+              Lorem ipsum dolor sit, amet consectetur adipisicing. There <br />
+              are no limits and absolutely no coding.
+            </p>
+          </div>
+          <div class="slide">
+            <h4>Startup 4</h4>
+            <h1>Forget about Code</h1>
+            <p>
+              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quos.
+              <br />
+              process -- you don't have to think avout any technical aspects.
+              There <br />
+              are no limits and absolutely no coding.
+            </p>
+          </div>
+          <button class="prev" id="prevbtn">
+            <i class="fa fa-chevron-left"></i>
+          </button>
+          <button class="next" id="nextbtn">
+            <i class="fa fa-chevron-right"></i>
+          </button>
+          <div class="dots">
+            <div class="dot active" id="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+          </div>
+        </div>
+        <button class="create">Create an Account</button>
+      </div>
+    </div>
+
+    <script>
+      const menuIcon = document.querySelector(".menu-icon");
+      const navBar = document.querySelector(".nav-bar");
+
+      menuIcon.addEventListener("click", () => {
+        navBar.classList.toggle("active");
+      });
+
+      const prevbtn = document.getElementById("prevbtn");
+      const nextbtn = document.getElementById("nextbtn");
+
+      const slides = document.querySelectorAll(".slide");
+      const dots = document.querySelectorAll(".dot");
+
+      let currentSlide = 0;
+
+      function showSlide(index) {
+        slides.forEach((slide) => {
+          slide.classList.remove("active");
+        });
+
+        dots.forEach((dot) => {
+          dot.classList.remove("active");
+        });
+
+        slides[index].classList.add("active");
+        dots[index].classList.add("active");
+
+        currentSlide = index;
+      }
+
+      function nextSlide() {
+        currentSlide++;
+
+        if (currentSlide >= slides.length) {
+          currentSlide = 0;
+        }
+
+        showSlide(currentSlide);
+      }
+
+      function previousSlide() {
+        currentSlide--;
+
+        if (currentSlide < 0) {
+          currentSlide = slides.length - 1;
+        }
+
+        showSlide(currentSlide);
+      }
+
+      nextbtn.addEventListener("click", nextSlide);
+      prevbtn.addEventListener("click", previousSlide);
+
+      dots.forEach((dot, index) => {
+        dot.addEventListener("click", () => {
+          showSlide(index);
+        });
+      });
+
+      // setInterval(nextSlide, 3000);
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

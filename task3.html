@@ -1,0 +1,389 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: sans-serif;
+      }
+      header {
+        display: flex;
+        gap: 15px;
+        align-items: center;
+        padding: 30px 20px;
+        position: relative;
+        z-index: 1000;
+        justify-content: space-evenly;
+        overflow-x: hidden;
+      }
+      .left-nav,
+      .right-nav,
+      .center-nav {
+        display: flex;
+        gap: 30px;
+        align-items: center;
+      }
+      a{
+        text-decoration: none;
+      }
+      .left-nav .logo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .left-nav .logo span {
+        font-family: "Pacifico", cursive;
+        transform: rotate(-4deg);
+        font-size: 23px;
+      }
+      .search-bar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background: #d7dada46;
+        gap: 4px;
+        border-radius: 30px;
+        padding: 5px 6px 5px 14px;
+      }
+      input {
+        border: none;
+        background: transparent;
+      }
+      input:focus {
+        outline: none;
+        box-shadow: none;
+      }
+      .dropdown {
+        position: relative;
+        transition: 0.4s ease;
+        background: transparent;
+      }
+
+      .dropdown-btn {
+        border: none;
+        background: transparent;
+        display: flex;
+        align-items: center;
+        white-space: nowrap;
+        font-size: 15px;
+        font-weight: 600;
+        gap: 3px;
+      }
+      .dropdown-btn i {
+        font-size: 12px;
+      }
+      .dropdown-btn:hover {
+        color: gray;
+      }
+      .search-icon {
+        background: #f8418d;
+        padding: 12px;
+        border-radius: 50%;
+        color: white;
+      }
+
+      .center-nav {
+        gap: 20px;
+      }
+      button {
+        padding: 13px 20px;
+        border-radius: 20px;
+        border: none;
+        white-space: nowrap;
+      }
+      button.sign {
+        background: transparent;
+        font-weight: 600;
+      }
+      button.sign:hover {
+        background: #f8418d81;
+        color: white;
+      }
+      button.login {
+        background: #000;
+        color: #fff;
+      }
+      .bi-filter-left {
+        display: none;
+        color: #000;
+        font-size: 29px;
+        font-weight: 700;
+        margin-top: 10px;
+      }
+      .screen {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .screen button {
+        display: none;
+      }
+      .dropdown-menu {
+        position: absolute;
+        z-index: 1000;
+        /* display: none; */
+        background: white;
+        box-shadow: 0 4px 16px rgba(152, 153, 153, 0.158);
+        border-radius: 20px;
+        padding: 40px 60px;
+        width: fit-content;
+      }
+      .drops {
+        display: flex;
+        gap: 40px;
+      }
+      .hover-dropdown:hover .dropdown-menu {
+        display: block;
+      }
+      .click-dropdown .dropdown-menu.show {
+        display: block;
+      }
+      .dropmenuItem {
+        display: flex;
+        align-items: center;
+        gap: 9px;
+        font-size: 14px;
+        margin: 0 0 20px 0;
+      }
+
+      .dropdownText h4 {
+        margin: 0;
+        line-height: 2.3;
+      }
+      .dropdownText span {
+        display: block;
+        color: gray;
+      }
+      .dropdownText {
+        white-space: nowrap;
+      }
+      .dropmenuItem i {
+        font-size: 26px;
+      }
+      .right-drop {
+        font-size: 14px;
+        line-height: 2.2;
+        font-weight: 600;
+      }
+      .bottom {
+        border-top: 1px solid #b8b7b752;
+        border-bottom: 1px solid #b8b7b752;
+        padding: 14px 0;
+        display: flex;
+        gap: 20px;
+      }
+      .bottom span {
+        color: grey;
+      }
+      .social-icon {
+        display: flex;
+        gap: 20px;
+      }
+      .social-icon i {
+        color: #000;
+      }
+      i.bi-stars,
+      i.fa-arrow-trend-up {
+        font-size: 16px;
+      }
+
+      @media (max-width: 780px) {
+        .bi-filter-left {
+          display: block;
+        }
+        header {
+          flex-direction: column;
+        
+        }
+        .left-nav {
+          display: block;
+        }
+        .screen button {
+          display: block;
+        }
+        .center-nav {
+          flex-direction: column;
+          text-align: left;
+        }
+        .screen {
+          margin: 0 0 10px 0;
+        }
+        .right-nav {
+          display: none;
+        }
+      }
+    </style>
+    <title>Document</title>
+  </head>
+  <body>
+    <header>
+      <div class="left-nav">
+        <div class="screen">
+          <div class="logo">
+         <div class="menuIcon" id="menuIcon"><i class="bi bi-filter-left" ></div></i><span>Dribbble</span>
+          </div>
+          <button class="login">Login</button>
+        </div>
+        <div class="search-bar">
+          <input type="text" placeholder="What are you looking for?" />
+          <div class="shots-dropdown">
+            <button class="dropdown-btn" id="dropdownBtn">
+              shots
+              <span><i class="bi bi-chevron-down"></i> </span>
+            </button>
+          </div>
+          <div class="search-icon">
+            <i class="bi bi-search"></i>
+          </div>
+        </div>
+      </div>
+      <div class="center-nav" id="nav">
+        <div class="explore-dropdown dropdown hover-dropdown">
+          <button class="dropdown-btn" id="clickBtn">
+            Explore <span><i class="bi bi-chevron-down"></i> </span>
+          </button>
+          <div class="dropdown-menu">
+            <div class="dropmenuItem">
+              <div class="icon"><i class="fa-solid fa-arrow-trend-up"></i></div>
+              <div class="dropdownText">
+                <h4>Popular</h4>
+              </div>
+            </div>
+            <div class="dropmenuItem">
+              <div class="icon"><i class="bi bi-stars"></i></div>
+              <div class="dropdownText">
+                <h4>New and Noteworthy</h4>
+              </div>
+            </div>
+            <div class="bottom">
+              <span>Product Design</span>
+            </div>
+          </div>
+        </div>
+        <div class="talent-dropdown dropdown click-dropdown">
+          <button class="dropdown-btn" id="dropdownBtn">
+            Hire Talent <span><i class="bi bi-chevron-down"></i> </span>
+          </button>
+        </div>
+        <div class="hire-dropdown dropdown click-dropdown">
+          <button class="dropdown-btn" id="dropdownBtn">
+            Get Hired <span><i class="bi bi-chevron-down"></i> </span>
+          </button>
+          <div class="dropdown-menu">
+            <div class="drops">
+              <div class="left-drop">
+                <div class="dropmenuItem">
+                  <div class="icon"><i class="bi bi-journal-text"></i></div>
+                  <div class="dropdownText">
+                    <h4>Browse Project Briefs</h4>
+                    <span>Pitch clients readyy to hire now</span>
+                  </div>
+                </div>
+                <div class="dropmenuItem">
+                  <div class="icon"><i class="bi bi-clipboard2"></i></div>
+                  <div class="dropdownText">
+                    <h4>Send Outbound Proposal</h4>
+                    <span>Send proposals to any client</span>
+                  </div>
+                </div>
+                <div class="dropmenuItem">
+                  <div class="icon"><i class="bi bi-textarea"></i></div>
+                  <div class="dropdownText">
+                    <h4>Add Service</h4>
+                    <span>Let clients purchase your services</span>
+                  </div>
+                </div>
+              </div>
+              <div class="right-drop">
+                <p>Full-Time Jobs <i class="bi bi-arrow-right"></i></p>
+                <p>Upgrade to Pro <i class="bi bi-arrow-right"></i></p>
+                <p>Advertise With Us <i class="bi bi-arrow-right"></i></p>
+              </div>
+            </div>
+            <div class="bottom">
+              <i class="bi bi-book"></i>
+              <span
+                >Learn more about getting hired on Dribble
+                <i class="bi bi-arrow-right"></i
+              ></span>
+            </div>
+          </div>
+        </div>
+        <div class="community-dropdown dropdown hover-dropdown">
+          <button class="dropdown-btn" id="dropdownBtn">
+            Community <span><i class="bi bi-chevron-down"></i> </span>
+          </button>
+          <div class="dropdown-menu">
+            <div class="left-drop">
+              <div class="dropmenuItem">
+                <div class="icon">
+                  <i class="fa-regular fa-address-card"></i>
+                </div>
+                <div class="dropdownText">
+                  <h4>Blog</h4>
+                  <span>Design inspiration, stories, and tips</span>
+                </div>
+              </div>
+              <div class="dropmenuItem">
+                <div class="icon"><i class="bi bi-trophy"></i></div>
+                <div class="dropdownText">
+                  <h4>Playoffs</h4>
+                  <span>Join creative challenges and show your skills</span>
+                </div>
+              </div>
+              <div class="dropmenuItem">
+                <div class="icon"><i class="bi bi-question-octagon"></i></div>
+                <div class="dropdownText">
+                  <h4>Add Service</h4>
+                  <span>Get quick answers and learn how to sue Dribble</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="bottom">
+              <span>Follow Us</span>
+              <div class="social-icon">
+                <a href="#"><i class="bi bi-instagram"></i></a>
+                <a href="#"><i class="bi bi-twitter-x"></i></a>
+                <a href="#"><i class="bi bi-pinterest"></i></a>
+                <a href="#"><i class="bi bi-youtube"></i></a>
+                <a href="#"><i class="bi bi-tiktok"></i></a>
+                <a href="#"><i class="bi bi-threads"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="right-nav">
+        <button class="sign">Sign up</button>
+        <button class="login">Login</button>
+      </div>
+    </header>
+
+    <script>
+   
+    </script>
+    <script
+      src="https://kit.fontawesome.com/712a58c174.js"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
